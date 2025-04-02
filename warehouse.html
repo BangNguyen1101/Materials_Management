@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh mục kho - QLVT</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/warehouse.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar will be loaded here -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header will be loaded here -->
+            <div id="header-container"></div>
+
+            <div class="content-area">
+                <div class="page-header">
+                    <div class="breadcrumb">
+                        <a href="index.html"><i class="fas fa-home"></i></a>
+                        <span>/</span>
+                        <span>Danh mục kho</span>
+                    </div>
+                    <div class="page-title">
+                        <h1>DANH MỤC KHO</h1>
+                        <p>Danh sách kho trực ERP</p>
+                    </div>
+                </div>
+
+                <div class="content-container">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="Nhập từ khóa tìm kiếm">
+                            <button class="clear-search" id="clearSearch">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button class="search-button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã kho</th>
+                                    <th>Tên kho</th>
+                                    <th>Loại kho</th>
+                                </tr>
+                            </thead>
+                            <tbody id="warehouseTableBody">
+                                <!-- Table content will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/partials.js"></script>
+    <script src="js/warehouse.js"></script>
+</body>
+</html> 

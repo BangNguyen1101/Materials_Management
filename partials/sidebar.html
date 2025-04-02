@@ -5,18 +5,60 @@
         <span class="user-name">Nguyễn Văn Nam</span>
     </div>
     <nav class="sidebar-nav">
+        <!-- System Section -->
         <div class="nav-group">
             <div class="nav-header">
                 <i class="fas fa-cog"></i>
                 <span>Hệ thống</span>
             </div>
             <ul>
-                <li data-page="users"><a href="users.html"><i class="fas fa-users"></i>Quản lý người dùng</a></li>
+                <li data-page="users"><a href="users.html"><i class="fas fa-users"></i>Người dùng</a></li>
                 <li data-page="roles"><a href="roles.html"><i class="fas fa-user-shield"></i>Quản lý quyền</a></li>
-                <li><a href="#"><i class="fas fa-sitemap"></i>Cơ cấu tổ chức</a></li>
-                <li><a href="#"><i class="fas fa-briefcase"></i>Vị trí công việc</a></li>
+                <li data-page="organization"><a href="organization.html"><i class="fas fa-sitemap"></i>Cơ cấu tổ chức</a></li>
+                <li data-page="positions"><a href="positions.html"><i class="fas fa-briefcase"></i>Vị trí công việc</a></li>
             </ul>
         </div>
-        <!-- Add other nav groups here -->
+
+        <!-- Catalog Section -->
+        <div class="nav-group">
+            <div class="nav-header">
+                <i class="fas fa-list"></i>
+                <span>Danh mục</span>
+            </div>
+            <ul>
+                <li data-page="warehouse"><a href="warehouse.html"><i class="fas fa-warehouse"></i>Kho</a></li>
+                <li data-page="sub-warehouse"><a href="sub-warehouse.html"><i class="fas fa-store"></i>Kho phụ</a></li>
+                <li data-page="locations"><a href="locations.html"><i class="fas fa-map-marker-alt"></i>Vị trí</a></li>
+                <li data-page="materials"><a href="materials.html"><i class="fas fa-boxes"></i>Vật tư</a></li>
+                <li data-page="waste-materials"><a href="waste-materials.html"><i class="fas fa-trash"></i>Vật tư tồn kho</a></li>
+                <li data-page="qr-codes"><a href="qr-codes.html"><i class="fas fa-qrcode"></i>Quản lý mã QR</a></li>
+            </ul>
+        </div>
+
+        <!-- Inventory Section -->
+        <div class="nav-group">
+            <div class="nav-header">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Kiểm kê</span>
+            </div>
+            <ul>
+                <li data-page="inventory-period"><a href="inventory-period.html"><i class="fas fa-calendar-alt"></i>Kỳ kiểm kê</a></li>
+                <li data-page="material-inventory"><a href="material-inventory.html"><i class="fas fa-boxes"></i>Kiểm kê vật tư</a></li>
+                <li data-page="inventory-history"><a href="inventory-history.html"><i class="fas fa-history"></i>Lịch sử kiểm kê</a></li>
+                <li data-page="backup"><a href="backup.html"><i class="fas fa-save"></i>Kỳ sao lưu</a></li>
+                <li data-page="inventory-close"><a href="inventory-close.html"><i class="fas fa-check-circle"></i>Chốt kiểm kê</a></li>
+            </ul>
+        </div>
+
+        <!-- Material Applications Section -->
+        <div class="nav-group">
+            <div class="nav-header">
+                <i class="fas fa-box-open"></i>
+                <span>Cung ứng vật tư</span>
+            </div>
+            <ul>
+                <li data-page="material-applications"><a href="material-applications.html"><i class="fas fa-file-alt"></i>Đơn xin vật tư</a></li>
+            </ul>
+        </div>
     </nav>
 </aside> 
