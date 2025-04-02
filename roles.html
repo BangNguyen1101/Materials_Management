@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý quyền - QLVT</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <img src="assets/default-avatar.png" alt="User Avatar">
+                <span class="user-name">Nguyễn Văn Nam</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <div class="nav-header">
+                        <i class="fas fa-cog"></i>
+                        <span>Hệ thống</span>
+                    </div>
+                    <ul>
+                        <li><a href="users.html"><i class="fas fa-users"></i>Quản lý người dùng</a></li>
+                        <li class="active"><a href="roles.html"><i class="fas fa-user-shield"></i>Quản lý quyền</a></li>
+                        <li><a href="#"><i class="fas fa-sitemap"></i>Cơ cấu tổ chức</a></li>
+                        <li><a href="#"><i class="fas fa-briefcase"></i>Vị trí công việc</a></li>
+                    </ul>
+                </div>
+                <!-- Add other nav groups here -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+                <div class="breadcrumb">
+                    <a href="#"><i class="fas fa-home"></i></a>
+                    <span>/</span>
+                    <span>Quản lý quyền</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" class="notifications"><i class="fas fa-bell"></i></a>
+                    <div class="user-menu">
+                        <img src="assets/default-avatar.png" alt="User">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div class="content-header">
+                    <h1>Quản lý quyền</h1>
+                    <p>Hệ thống quản lý vật tư thiết bị</p>
+                </div>
+
+                <div class="content-tools">
+                    <div class="search-box">
+                        <input type="text" placeholder="Nhập từ khóa tìm kiếm">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="btn-primary" id="addRoleBtn">
+                        <i class="fas fa-plus"></i> Thêm nhóm quyền
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nhóm quyền</th>
+                                <th>Quản trị viên</th>
+                                <th>Người dùng</th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="roleList">
+                            <!-- Role list will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Role Modal -->
+    <div class="modal" id="addRoleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Thêm nhóm quyền</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="roleForm">
+                <div class="form-group">
+                    <label>Nhóm quyền <span class="required">*</span></label>
+                    <input type="text" id="roleName" name="roleName" required>
+                </div>
+                <div class="form-group">
+                    <label>Mã cơ cấu tổ chức <span class="required">*</span></label>
+                    <select id="roleOrg" name="roleOrg" required>
+                        <option value="admin">Quản trị viên</option>
+                        <option value="user">Người dùng</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea id="roleDesc" name="roleDesc"></textarea>
+                </div>
+                <div class="permissions-section">
+                    <h3>Tích chọn modules-chức năng</h3>
+                    <div class="permission-group">
+                        <label>
+                            <input type="checkbox" class="permission-checkbox" data-module="system" value="1">
+                            Hệ thống
+                        </label>
+                        <label>
+                            <input type="checkbox" class="permission-checkbox" data-module="inventory" value="2">
+                            Cung ứng vật tư
+                        </label>
+                        <label>
+                            <input type="checkbox" class="permission-checkbox" data-module="accounting" value="3">
+                            Kiểm kê
+                        </label>
+                        <label>
+                            <input type="checkbox" class="permission-checkbox" data-module="reports" value="4">
+                            Báo cáo
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="roleManager.hideModals()">Hủy</button>
+                    <button type="submit" class="btn-primary" id="saveRoleBtn">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Role Modal -->
+    <div class="modal" id="deleteRoleModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Xóa nhóm quyền</h3>
+            </div>
+            <p>Bạn chắc muốn xóa nhóm quyền này?</p>
+            <p class="warning">Hành động này không thể hoàn tác.</p>
+            <div class="form-group">
+                <label>Chuyển người dùng đến</label>
+                <select id="transferTo">
+                    <option value="admin">Quản trị viên</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="roleManager.hideModals()">Hủy</button>
+                <button class="btn-danger" id="confirmDeleteBtn">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/roles.js"></script>
+</body>
+</html> 
