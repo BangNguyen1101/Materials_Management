@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý người dùng - QLVT</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <img src="assets/default-avatar.png" alt="User Avatar">
+                <span class="user-name">Nguyễn Văn Nam</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <div class="nav-header">
+                        <i class="fas fa-cog"></i>
+                        <span>Hệ thống</span>
+                    </div>
+                    <ul>
+                        <li class="active"><a href="#"><i class="fas fa-users"></i>Quản lý người dùng</a></li>
+                        <li><a href="#"><i class="fas fa-user-shield"></i>Quản lý quyền</a></li>
+                        <li><a href="#"><i class="fas fa-sitemap"></i>Cơ cấu tổ chức</a></li>
+                        <li><a href="#"><i class="fas fa-briefcase"></i>Vị trí công việc</a></li>
+                    </ul>
+                </div>
+                <!-- Add other nav groups here -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+                <div class="breadcrumb">
+                    <a href="#"><i class="fas fa-home"></i></a>
+                    <span>/</span>
+                    <span>Quản lý người dùng</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" class="notifications"><i class="fas fa-bell"></i></a>
+                    <div class="user-menu">
+                        <img src="assets/default-avatar.png" alt="User">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div class="content-header">
+                    <h1>Quản lý người dùng</h1>
+                    <p>Chức năng quản lý người dùng</p>
+                </div>
+
+                <div class="content-tools">
+                    <div class="search-box">
+                        <input type="text" placeholder="Nhập từ khóa tìm kiếm">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="btn-primary" id="addUserBtn">
+                        <i class="fas fa-plus"></i> Thêm mới
+                    </button>
+                    <button class="btn-danger" id="deleteSelectedBtn">
+                        <i class="fas fa-trash"></i> Xóa
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll"></th>
+                                <th>Tên người dùng</th>
+                                <th>Tên đăng nhập</th>
+                                <th>Kiểu người dùng</th>
+                                <th>Cơ cấu tổ chức</th>
+                                <th>Ngày tham gia</th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <!-- Table content will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="btn-page"><i class="fas fa-chevron-left"></i> Trang trước</button>
+                    <div class="page-numbers">
+                        <span class="active">1</span>
+                        <span>2</span>
+                    </div>
+                    <button class="btn-page">Trang tiếp <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal" id="addUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Thêm mới người dùng</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="addUserForm">
+                <div class="form-section">
+                    <h3>THÔNG TIN BẮT BUỘC</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tên <span class="required">*</span></label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Họ <span class="required">*</span></label>
+                            <input type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tên đăng nhập <span class="required">*</span></label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>THÔNG TIN NGƯỜI DÙNG</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Giới tính</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="gender" value="nam"> Nam</label>
+                                <label><input type="radio" name="gender" value="nu"> Nữ</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Kích hoạt</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="status" value="active"> Có</label>
+                                <label><input type="radio" name="status" value="inactive"> Không</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add other form fields as shown in the image -->
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="cancelAdd">Đóng</button>
+                    <button type="submit" class="btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modals -->
+    <div class="modal" id="deleteConfirmModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Xác nhận xóa người dùng?</h3>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary">Hủy</button>
+                <button class="btn-danger">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="deactivateConfirmModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Xác nhận bỏ kích hoạt người dùng?</h3>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary">Hủy</button>
+                <button class="btn-primary">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/users.js"></script>
+</body>
+</html> 
